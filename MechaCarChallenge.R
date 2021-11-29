@@ -30,3 +30,21 @@ lot_summary <- suspension.df %>% group_by(Manufacturing_Lot) %>% summarize(Mean=
                                                          Median=median(PSI),
                                                          Variance=var(PSI),
                                                          SD=sd(PSI))
+
+
+psi_select <- suspension.df %>% filter(suspension.df$PSI == 1500)
+
+
+t.test(log10(suspension.df$PSI), log10(psi_select$PSI))
+
+lot1.df <- suspension.df %>% filter(suspension.df$Manufacturing_Lot == "Lot1")
+
+lot2.df <- suspension.df %>% filter(suspension.df$Manufacturing_Lot == "Lot2")
+
+lot3.df <- suspension.df %>% filter(suspension.df$Manufacturing_Lot == "Lot3")
+
+t.test(log10(lot1.df$PSI), log10(psi_select$PSI))
+
+t.test(log10(lot2.df$PSI), log10(psi_select$PSI))
+
+t.test(log10(lot3.df$PSI), log10(psi_select$PSI))
